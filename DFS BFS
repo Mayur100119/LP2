@@ -1,0 +1,41 @@
+def DFSUtil(graph, v, visited):
+  visited[v] = True
+  print(v, end=" ")
+
+  for i in range(len(graph[v])):
+    if graph[v][i] == 1 and not visited[i]:
+      DFSUtil(graph, i, visited)
+
+def DFS(graph, v):
+  visited = [False] * len(graph)
+  DFSUtil(graph, v, visited)
+
+def BFSUtil(graph, v, visited):
+  queue = []
+  visited[v] = True
+  queue.append(v)
+
+  while queue:
+    v = queue.pop(0)
+    print(v, end=" ")
+
+    for i in range(len(graph[v])):
+      if graph[v][i] == 1 and not visited[i]:
+        visited[i] = True
+        queue.append(i)
+
+def BFS(graph, v):
+  visited = [False] * len(graph)
+  BFSUtil(graph, v, visited)
+
+# Example usage
+graph = [[0, 1, 0, 1],
+        [1, 0, 1, 0],
+        [0, 1, 0, 1],
+        [1, 0, 1, 0]]
+
+print("Depth First Search (starting from vertex 2):")
+DFS(graph, 2)
+
+print("\nBreadth First Search (starting from vertex 2):")
+BFS(graph, 2)
